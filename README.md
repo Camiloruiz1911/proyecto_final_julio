@@ -2,6 +2,15 @@
 # JUAN CAMILO RUIZ FORONDA
 ### 100 PALABRAS DE LO QUE HACE SU APLICACION 
 
+# PROYECTO DE PAGINA DE CRISTIANO RONALDO 
+## CON MODAL,FORMULARIO,EDITAR Y TABLA PHP/SQL
+
+#### Este aplicativo lo que hace es guardar archivos sobre una pagina de cristiano ronaldo que fue echa con visual studio code que incluye un carrusel de fotos donde muestra sus momentos de gloria tanto a nivel de club como nacional el codigo tambien incluye un video de sus mejores momentos o jugadas cuando jugaba en el manchester united tambien el proyecto incluye dos columnas donde se puede ver un poco de la informacion de el como su trayectoria de carrera y sus titulos a nivel nacional y europeo tambien incluye una breve informacion de sus titulos a nivel individual incluye una tabla sobre las estadisticas de cristiano su paso por cada egquipo goles y asisitencias el proyecto o codigo tambien muestra un formulario de registro de personas que esta conectado a una base de datos de phpmyadmin que cuando se hace el registro automaticamente se agrega la informacion  a la base de datos la pagina incluye un modal y una tabla llamada tabla formulario que esta vinculada a una tabla de una base de datos de sql cuando uno hace el registro de la pagina de cristiano la tabla formulario que esta vinculada a la tabla de la base de datos se trae toda esa informacion de los registros para la tabla formulario tambien se le incluyo un comando de editar a la tabla formulario si el usuario quiere editar alguna informacion de la tabla
+
+#### El programa que se uso fue  visual studio code que posee el codigo de la pagina xamp que tiene la base de datos vinculada con la pagina y github que se guarda todo los archivos de la pagina 
+
+
+
 ```sql
 -- phpMyAdmin SQL Dump
 -- version 5.2.1
