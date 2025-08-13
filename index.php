@@ -99,9 +99,6 @@
  
           <div class="row">
             <div class="col">
-            <label for="Name" class="">ID</label>
-          <input type="text" class="form-control" id="Name" placeholder="Ingrese el id" name="id">
-            </div>
             <div class="col">
             <label fot="Nombre" class="">Nombre</label>
           <input type="text" class="form-control" id="Name" placeholder="Ingrese el Nombre" name="nombre">
@@ -195,7 +192,7 @@ if ($conexion){
       <td><?php echo $fila ["Edad"];?></td>
       <td><?php echo $fila ["Correo"];?></td>
       <td><?php echo $fila ["Telefono"];?></td>
-      <td><a href="Update.php?id=<?= $fila['ID_Registro'] ?>" class="btn btn-success">Editar</a><td>
+      <td><a href="Update.php?id=<?= $fila['Id'] ?>" class="btn btn-success">Editar</a><td>
  
       <td><td>
 
