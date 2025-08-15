@@ -65,7 +65,7 @@ $registro = $con->fetch(PDO::FETCH_ASSOC);
     <div class="row">  
     <div class="col">
     <label fot="Cedula" class="Form-label">Cedula</label>
-      <input type="text" class="form-control" id="Name" Value="<?php echo htmlspecialchars($registro['Id']) ?>" disabled name="id">
+      <input type="text" class="form-control" id="Name" Value="<?php echo htmlspecialchars($registro['Id']) ?>" readonly name="id">
     </div>
 
     <div class="col">
@@ -90,7 +90,7 @@ $registro = $con->fetch(PDO::FETCH_ASSOC);
 
        <div class="row">
   <div class="col text-center">
-    <button class="btn btn-info" type="submit">Enviar</button>
+    <button class="btn btn-info" type="submit">Actualizar</button>
   </div>
 </div>
     <!-- Bootstrap JS y dependencias -->

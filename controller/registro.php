@@ -1,6 +1,6 @@
 <?php
 // Llamar la conexión
-include_once "Conexion.php";
+include_once "conexion.php";
 $conexion = new Conexion();
 $conexion = $conexion->conectar();
 
@@ -24,7 +24,6 @@ if ($conexion) {
         $stmt->bindParam(':correo', $correo);
         $stmt->bindParam(':telefono', $tel);
         $stmt->execute();
-
         header("Location: ../Index.php?mensaje=Correcto");
         exit();
         
