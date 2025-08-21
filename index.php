@@ -192,12 +192,8 @@ if ($conexion){
       <td><?php echo $fila ["Edad"];?></td>
       <td><?php echo $fila ["Correo"];?></td>
       <td><?php echo $fila ["Telefono"];?></td>
-      <td><a href="Update.php?id=<?= $fila['Id'] ?>" class="btn btn-success">Editar</a><td>
- 
-      <td><td>
-
-     
-  
+      <td><a href="Update.php?id=<?= $fila['Id'] ?>" class="btn btn-success">Editar</a></td>
+      <td><a href="Delete.php?id=<?= $fila['Id'] ?>" class="btn btn-danger">Eliminar</a></td>
     </tr>
     
   </tbody> 

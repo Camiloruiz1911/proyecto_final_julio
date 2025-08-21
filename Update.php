@@ -1,98 +1,91 @@
-<?php 
-
-if(!isset($_GET['id']) || empty($_GET['id'])) {
-    header("Location: index.php?error="."Invalid ID");
-    exit();
-}
-$id = $_GET['id'];
+<?php
 include_once "controller/conexion.php";
-$con = new Conexion();
-$con = $con->conectar();
+$conexion = new Conexion();
+$conexion = $conexion->conectar();
 
+// Obtener el ID del registro
+$id = $_GET['id'] ?? null;
 
-if(!$con) {
-    header("Location: index.php?error="."Sin conexion");
-    exit();
+// Verificar si se envió el formulario
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $nombre = $_POST['nombre'];
+    $apellido = $_POST['apellido'];
+    $edad = $_POST['edad'];
+    $correo = $_POST['correo'];
+    $telefono = $_POST['telefono'];
+
+    $sql = "UPDATE registropersonas SET 
+                Nombre = :nombre,
+                Apellido = :apellido,
+                Edad = :edad,
+                Correo = :correo,
+                Telefono = :telefono
+            WHERE Id = :id";
+
+    $stmt = $conexion->prepare($sql);
+    $stmt->bindParam(':nombre', $nombre);
+    $stmt->bindParam(':apellido', $apellido);
+    $stmt->bindParam(':edad', $edad);
+    $stmt->bindParam(':correo', $correo);
+    $stmt->bindParam(':telefono', $telefono);
+    $stmt->bindParam(':id', $id);
+
+    if ($stmt->execute()) {
+        header("Location: index.php"); 
+        exit;
+    } else {
+        echo "Error al actualizar el registro.";
+    }
+} else {
+    // Obtener datos actuales del registro
+    $sql = "SELECT * FROM registropersonas WHERE Id = :id";
+    $stmt = $conexion->prepare($sql);
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+    $persona = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$persona) {
+        echo "Registro no encontrado.";
+        exit;
+    }
 }
-
-$sql = "SELECT * FROM `registropersonas` WHERE Id = :id";
-$con=$con->prepare($sql);
-$con->bindparam(':id', $id);
-$con->execute();
-
-if($con->RowCount() == 0){
-    header("Location: index.php?error="."No existe el dato");
-}
-
-$registro = $con->fetch(PDO::FETCH_ASSOC);
-
-
-
 ?>
+
+<!-- HTML del formulario -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Actualizar Registro</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>Actualizar Registro</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <?php include 'Layout/Layout.php'; ?>
-    <div class="container mt-5">
-        <!-- Aquí va el contenido de tu página, por ejemplo el formulario de actualización -->
-        <h2>Actualizar Registro</h2>
-        <!-- Formulario centrado -->
-    <form action="controller/registro.php" method="POST">
-      <div class="row">
-        <div class="col">
-        <div class="col">
-        <div>
-      
-
-      </div>
-        <label fot="Nombre" class="">Nombre</label>
-      <input type="text" class="form-control" id="Name" Value="<?php echo htmlspecialchars($registro['Nombre']) ?>" name="nombre">
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Editar Registro</h2>
+    <form method="POST">
+        <div class="mb-3">
+            <label>Nombre</label>
+            <input type="text" name="nombre" class="form-control" value="<?= $persona['Nombre'] ?>">
         </div>
-      </div>
-     
-   <div class="row">  
-    <div class="col">
-    <label fot="Apellido" class="Form-label">Apellido</label>
-      <input type="text" class="form-control" id="Name" Value="<?php echo htmlspecialchars($registro['Apellido']) ?>" name="apellido">
-    </div>
-
-    <div class="row">  
-    <div class="col">
-    <label fot="Cedula" class="Form-label">Cedula</label>
-      <input type="text" class="form-control" id="Name" Value="<?php echo htmlspecialchars($registro['Id']) ?>" readonly name="id">
-    </div>
-
-    <div class="col">
-
-    <div class="row">  
-   
-    <label fot="Edad" class="Form-label">Edad</label>
-      <input type="text" class="form-control" id="Name" Value="<?php echo htmlspecialchars($registro['Edad']) ?>" name="edad">
-    </div>
-   </div>
-     
-      <div class="row">
-        <div class="col">
-        <label fot="Correo" class="Form-label">correo</label>
-      <input type="email" class="form-control" id="Name" Value="<?php echo htmlspecialchars($registro['Correo']) ?>" name="correo">
+        <div class="mb-3">
+            <label>Apellido</label>
+            <input type="text" name="apellido" class="form-control" value="<?= $persona['Apellido'] ?>">
         </div>
-    <div class="col">
-    <label fot="Apellido" class="Form-label">Telefono</label>
-      <input type="text" class="form-control" id="Name" Value="<?php echo htmlspecialchars($registro['Telefono']) ?>" name="telefono">
-    </div>
-    </div>
-
-       <div class="row">
-  <div class="col text-center">
-    <button class="btn btn-info" type="submit">Actualizar</button>
-  </div>
+        <div class="mb-3">
+            <label>Edad</label>
+            <input type="text" name="edad" class="form-control" value="<?= $persona['Edad'] ?>">
+        </div>
+        <div class="mb-3">
+            <label>Correo</label>
+            <input type="email" name="correo" class="form-control" value="<?= $persona['Correo'] ?>">
+        </div>
+        <div class="mb-3">
+            <label>Teléfono</label>
+            <input type="text" name="telefono" class="form-control" value="<?= $persona['Telefono'] ?>">
+        </div>
+        <button type="submit" class="btn btn-primary">Actualizar</button>
+        <a href="index.php" class="btn btn-secondary">Cancelar</a>
+    </form>
 </div>
-    <!-- Bootstrap JS y dependencias -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+</html>
