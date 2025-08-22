@@ -112,7 +112,7 @@
         </div>
         <div class="col">
 
-        <label fot="Apellido" class="Form-label">Edad</label>
+        <label fot="Edad" class="Form-label">Edad</label>
           <input type="text" class="form-control" id="Name" placeholder="Ingrese la edad" name="edad">
         </div>
        </div>
@@ -193,7 +193,7 @@ if ($conexion){
       <td><?php echo $fila ["Correo"];?></td>
       <td><?php echo $fila ["Telefono"];?></td>
       <td><a href="Update.php?id=<?= $fila['Id'] ?>" class="btn btn-success">Editar</a></td>
-      <td><a href="Delete.php?id=<?= $fila['Id'] ?>" class="btn btn-danger">Eliminar</a></td>
+      <td><a href="Delete.php?id=<?= $fila['Id'] ?>" class="btn btn-danger">Eliminar</a></td>            
     </tr>
     
   </tbody> 

@@ -13,11 +13,10 @@ $tel = $_POST['telefono'];
 
 if ($conexion) {
     try {
-        $consulta = "INSERT INTO registropersonas(Id, Nombre, Apellido, Edad, Correo, Telefono) 
-                     VALUES (:id, :nombre, :apellido, :edad, :correo, :telefono)";
+        $consulta = "INSERT INTO registropersonas(Nombre, Apellido, Edad, Correo, Telefono) 
+                     VALUES (:nombre, :apellido, :edad, :correo, :telefono)";
         
         $stmt = $conexion->prepare($consulta);
-        $stmt->bindParam(':id', $cedula);
         $stmt->bindParam(':nombre', $nombre);
         $stmt->bindParam(':apellido', $apellido);
         $stmt->bindParam(':edad', $edad);
