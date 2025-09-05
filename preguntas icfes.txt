@@ -1,0 +1,31 @@
+6. ¿Qué instrucción se usa en Java para leer datos por teclado?
+
+• B) Scanner
+
+
+
+7. ¿Qué operador se usa para comparar igualdad entre dos valores primitivos en Java?
+
+• B) ==
+
+
+8. ¿Cuál de las siguientes opciones es un ciclo en Java?
+
+
+• C) for
+
+
+
+9. ¿Qué palabra clave se usa para definir una clase en Java?
+
+
+
+• B) class
+
+
+10. ¿Qué imprime este código? 
+int x = 10; if (x % 2 == 0) {
+ System.out.println("Par");
+ } else { System.out.println("Impar"); 
+}
+• B) Imprime Par
