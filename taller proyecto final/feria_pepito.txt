@@ -1,0 +1,80 @@
+package com.mycompany.taller_pepito;
+
+import java.util.Scanner;
+
+/**
+ *
+ * @author juanc
+ */
+public class Taller_pepito {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+     System.out.println("Bienvenido a la feria Pepito");
+        System.out.print("Cuantas monedas tienes: ");
+        int N = sc.nextInt();
+
+        System.out.println("--- ESTACIÓN 1: La Torre de la Suma ---");
+        int suma = 0;
+        for (int i = 1; i <= N; i++) {
+            if (i % 5 == 0) {
+                suma += i;
+            }
+        }
+        System.out.println("La suma de los múltiplos de 5 hasta " + N + " es: " + suma);
+        if (suma > 100) {
+            System.out.println("Ganaste un pase especial");
+        } else {
+            System.out.println("No ganaste el pase, pero puedes continuar");
+        }
+
+        System.out.println("\n--- ESTACIÓN 2: La Prueba de las Naranjas");
+        int totalNaranjas = 0;
+        for (int i = 1; i <= N; i++) {
+            if (i % 2 == 0) {
+                totalNaranjas += 2;
+            } else {
+                totalNaranjas += 1;
+            }
+        }
+        System.out.println("Pepito obtiene un total de " + totalNaranjas + " naranjas");
+
+        System.out.println("--- ESTACIÓN 3: El Espejo Encantado ---");
+        int numOriginal = N;
+        int invertido = 0;
+        while (N > 0) {
+            int digito = N % 10;
+            invertido = invertido * 10 + digito;
+            N /= 10;
+        }
+        System.out.println("El espejo muestra: " + invertido);
+
+        System.out.println("--- ESTACIÓN 4: La Puerta de los Dígitos ---");
+        int numero = invertido; 
+        int pares = 0;
+        int impares = 0;
+
+        while (numero > 0) {
+            int digito = numero % 10;
+            if (digito % 2 == 0) {
+                pares++;
+            } else {
+                impares++;
+            }
+            numero /= 10;
+        }
+
+        System.out.println("Dígitos pares: " + pares);
+        System.out.println("Dígitos impares: " + impares);
+
+        if (pares > impares) {
+            System.out.println(" Acceso concedido.");
+            System.out.println("Pepito logró salir de la feria");
+        } else {
+            System.out.println(" Acceso denegado");
+            System.out.println("Pepito quedó atrapado para siempre en la feria");
+        }
+
+        sc.close();
+    }
+}
